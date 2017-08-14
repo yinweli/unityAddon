@@ -13,15 +13,15 @@ namespace FouridStudio
         /// <summary>
         /// 委派型態:建立物件
         /// </summary>
-        /// <returns>建立物件</returns>
-        public delegate T AllocObject();
+        /// <returns>物件</returns>
+        public delegate T CreateObject();
 
         /// <summary>
-        /// 委派型態:重置物件, 必須傳回obj
+        /// 委派型態:分配物件, 必須傳回obj
         /// </summary>
-        /// <param name="obj">重置物件</param>
-        /// <returns></returns>
-        public delegate T ResetObject(T obj);
+        /// <param name="obj">分配物件</param>
+        /// <returns>分配物件</returns>
+        public delegate T AllocObject(T obj);
 
         /// <summary>
         /// 委派型態:釋放物件, 必須傳回obj
@@ -38,12 +38,12 @@ namespace FouridStudio
         /// <summary>
         /// 建立物件委派
         /// </summary>
-        public AllocObject allocObject = null;
+        public CreateObject createObject = null;
 
         /// <summary>
-        /// 重置物件委派
+        /// 分配物件委派
         /// </summary>
-        public ResetObject resetObject = null;
+        public AllocObject allocObject = null;
 
         /// <summary>
         /// 釋放物件委派
@@ -71,7 +71,7 @@ namespace FouridStudio
 
             T obj = objects[nextIndex++];
 
-            return resetObject != null ? resetObject(obj) : obj;
+            return allocObject != null ? allocObject(obj) : obj;
         }
 
         /// <summary>
@@ -113,7 +113,7 @@ namespace FouridStudio
                 newObjects = new T[growSize];
 
             for (int i = oldSize; i < newObjects.Length; ++i)
-                newObjects[i] = allocObject != null ? allocObject() : new T();
+                newObjects[i] = createObject != null ? createObject() : new T();
 
             objects = newObjects;
         }
