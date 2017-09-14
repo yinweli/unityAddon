@@ -7,6 +7,8 @@ namespace FouridStudio
     /// </summary>
     public class Polygon
     {
+        #region 主要函式
+
         /// <summary>
         /// 檢查座標是否位於多邊形內
         /// </summary>
@@ -26,5 +28,7 @@ namespace FouridStudio
 
             return result;
         }
+
+        #endregion 主要函式
     }
 }

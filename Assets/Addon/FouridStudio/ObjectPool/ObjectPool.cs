@@ -4,12 +4,14 @@ using System.Collections.Generic;
 namespace FouridStudio
 {
     /// <summary>
-    /// 物件池類別
+    /// 物件池
     /// 注意!不支援多執行緒
     /// </summary>
     /// <typeparam name="T">物件型別</typeparam>
     public class ObjectPool<T> where T : new()
     {
+        #region 定義
+
         /// <summary>
         /// 委派型態:建立物件
         /// </summary>
@@ -30,10 +32,14 @@ namespace FouridStudio
         /// <returns>釋放物件</returns>
         public delegate T FreeObject(T obj);
 
+        #endregion 定義
+
+        #region 屬性
+
         /// <summary>
         /// 當可用物件不足時, 分派的新物件數量
         /// </summary>
-        public int growSize = 100;
+        public int growSize = 20;
 
         /// <summary>
         /// 建立物件委派
@@ -59,6 +65,10 @@ namespace FouridStudio
         /// 使用索引
         /// </summary>
         private int nextIndex = 0;
+
+        #endregion 屬性
+
+        #region 主要函式
 
         /// <summary>
         /// 建立物件
@@ -117,5 +127,7 @@ namespace FouridStudio
 
             objects = newObjects;
         }
+
+        #endregion 主要函式
     }
 }

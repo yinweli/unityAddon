@@ -6,6 +6,8 @@
     /// <typeparam name="T"></typeparam>
     public class Singleton<T> where T : class, new()
     {
+        #region 屬性
+
         private static T instance = null;
 
         public static T Instance
@@ -18,5 +20,7 @@
                 return instance;
             }
         }
+
+        #endregion 屬性
     }
 }

@@ -4,10 +4,12 @@ using System.Diagnostics;
 namespace FouridStudio
 {
     /// <summary>
-    /// 自動報告計時類別
+    /// 自動報告計時
     /// </summary>
     public class AutoStopwatch : IDisposable
     {
+        #region 屬性
+
         /// <summary>
         /// 報告標題
         /// </summary>
@@ -17,6 +19,10 @@ namespace FouridStudio
         /// 計時器物件
         /// </summary>
         private Stopwatch stopWatch = new Stopwatch();
+
+        #endregion 屬性
+
+        #region 主要函式
 
         public AutoStopwatch(string title)
         {
@@ -29,5 +35,7 @@ namespace FouridStudio
             stopWatch.Stop();
             UnityEngine.Debug.Log(string.Format("{0} finish, used time={1}ms", title, stopWatch.ElapsedMilliseconds));
         }
+
+        #endregion 主要函式
     }
 }

@@ -3,10 +3,12 @@ using UnityEngine;
 namespace FouridStudio
 {
     /// <summary>
-    /// 資料路徑類別
+    /// 資料路徑
     /// </summary>
     public class Route
     {
+        #region 屬性
+
         /// <summary>
         /// StreamAssets路徑
         /// </summary>
@@ -25,5 +27,7 @@ namespace FouridStudio
 #endif
             }
         }
+
+        #endregion 屬性
     }
 }

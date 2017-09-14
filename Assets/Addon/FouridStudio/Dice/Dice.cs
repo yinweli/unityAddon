@@ -5,10 +5,12 @@ using System.Linq;
 namespace FouridStudio
 {
     /// <summary>
-    /// 多面骰類別
+    /// 多面骰
     /// </summary>
     public class Dice<T>
     {
+        #region 屬性
+
         /// <summary>
         /// 隨機物件
         /// </summary>
@@ -23,16 +25,6 @@ namespace FouridStudio
         /// 骰子最大值
         /// </summary>
         private int max = 0;
-
-        public Dice()
-        {
-            random = new Random();
-        }
-
-        public Dice(Random random)
-        {
-            this.random = random;
-        }
 
         public int Max
         {
@@ -56,6 +48,20 @@ namespace FouridStudio
             {
                 return dices.Count <= 0;
             }
+        }
+
+        #endregion 屬性
+
+        #region 主要函式
+
+        public Dice()
+        {
+            random = new Random();
+        }
+
+        public Dice(Random random)
+        {
+            this.random = random;
         }
 
         /// <summary>
@@ -86,5 +92,7 @@ namespace FouridStudio
         {
             return dices.Where(itor => itor.Key >= value).Select(itor => itor.Value).FirstOrDefault();
         }
+
+        #endregion 主要函式
     }
 }

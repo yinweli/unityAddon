@@ -7,11 +7,13 @@ using System.Linq;
 namespace FouridStudio
 {
     /// <summary>
-    /// 用來讀取json資料列表的元件
+    /// json列表資料庫
     /// </summary>
     /// <typeparam name="T">資料型態</typeparam>
     public class JsonDepot<T> : IEnumerable where T : class
     {
+        #region 定義
+
         /// <summary>
         /// 索引解析委派
         /// </summary>
@@ -19,10 +21,18 @@ namespace FouridStudio
         /// <returns>索引物件</returns>
         public delegate object ParseKey(T obj);
 
+        #endregion 定義
+
+        #region 屬性
+
         /// <summary>
         /// 資料列表
         /// </summary>
         private Dictionary<object, T> datas = new Dictionary<object, T>();
+
+        #endregion 屬性
+
+        #region 主要函式
 
         public IEnumerator GetEnumerator()
         {
@@ -86,5 +96,7 @@ namespace FouridStudio
         {
             return datas.Values.ToList();
         }
+
+        #endregion 主要函式
     }
 }

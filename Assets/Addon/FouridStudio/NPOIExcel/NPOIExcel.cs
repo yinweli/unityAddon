@@ -6,14 +6,30 @@ using System.IO;
 namespace FouridStudio
 {
     /// <summary>
-    /// Excel操作類別
+    /// Excel操作
     /// </summary>
     public class NPOIExcel
     {
+        #region 屬性
+
         /// <summary>
         /// Workbook物件
         /// </summary>
         private IWorkbook workbook = null;
+
+        public NPOISheet this[string sheetName]
+        {
+            get
+            {
+                ISheet sheet = workbook.GetSheet(sheetName);
+
+                return new NPOISheet(sheet == null ? workbook.CreateSheet(sheetName) : sheet);
+            }
+        }
+
+        #endregion 屬性
+
+        #region 主要函式
 
         /// <summary>
         /// 建立新的Excel
@@ -35,16 +51,10 @@ namespace FouridStudio
             }
         }
 
-        public NPOISheet this[string sheetName]
-        {
-            get
-            {
-                ISheet sheet = workbook.GetSheet(sheetName);
-
-                return new NPOISheet(sheet == null ? workbook.CreateSheet(sheetName) : sheet);
-            }
-        }
-
+        /// <summary>
+        /// 儲存Excel
+        /// </summary>
+        /// <param name="path"></param>
         public void save(string path)
         {
             using (FileStream fileStream = File.OpenWrite(path))
@@ -52,16 +62,18 @@ namespace FouridStudio
                 workbook.Write(fileStream);
             }
         }
+
+        #endregion 主要函式
     }
 
+    /// <summary>
+    /// Excel工作表操作
+    /// </summary>
     public class NPOISheet
     {
-        private ISheet sheet = null;
+        #region 屬性
 
-        public NPOISheet(ISheet sheet)
-        {
-            this.sheet = sheet;
-        }
+        private ISheet sheet = null;
 
         public NPOICell this[int rowNumber, int cellNumber]
         {
@@ -80,11 +92,31 @@ namespace FouridStudio
                 return new NPOICell(cell);
             }
         }
+
+        #endregion 屬性
+
+        #region 主要函式
+
+        public NPOISheet(ISheet sheet)
+        {
+            this.sheet = sheet;
+        }
+
+        #endregion 主要函式
     }
 
+    /// <summary>
+    /// Excel儲存格操作
+    /// </summary>
     public class NPOICell
     {
+        #region 屬性
+
         private ICell cell = null;
+
+        #endregion 屬性
+
+        #region 主要函式
 
         public NPOICell(ICell cell)
         {
@@ -126,5 +158,7 @@ namespace FouridStudio
             else
                 cell.SetCellValue(obj.ToString());
         }
+
+        #endregion 主要函式
     }
 }

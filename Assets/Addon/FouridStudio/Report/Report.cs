@@ -3,10 +3,12 @@
 namespace FouridStudio
 {
     /// <summary>
-    /// 報告類別
+    /// UnityEngine.Debug報告
     /// </summary>
     public class Report : Singleton<Report>
     {
+        #region 主要函式
+
         /// <summary>
         /// 紀錄
         /// </summary>
@@ -43,5 +45,7 @@ namespace FouridStudio
 
             return obj;
         }
+
+        #endregion 主要函式
     }
 }

@@ -6,15 +6,21 @@ using System.Collections.Generic;
 namespace FouridStudio
 {
     /// <summary>
-    /// 用來讀取SQLite資料庫的元件
+    /// SQLite資料庫
     /// 注意!不支援多執行緒
     /// </summary>
     public class SQLite : IDisposable
     {
+        #region 屬性
+
         /// <summary>
         /// 資料庫物件
         /// </summary>
         private SqliteConnection connect = null;
+
+        #endregion 屬性
+
+        #region 主要函式
 
         public void Dispose()
         {
@@ -99,23 +105,21 @@ namespace FouridStudio
                 }//using
             }//using
         }
+
+        #endregion 主要函式
     }
 
     /// <summary>
-    /// 結果類別
+    /// SQLite查詢結果
     /// </summary>
     public class SQLiteResult : IEnumerable
     {
+        #region 屬性
+
         /// <summary>
         /// 結果列表
         /// </summary>
         private Dictionary<string, object> results = new Dictionary<string, object>();
-
-        public SQLiteResult(SqliteDataReader reader)
-        {
-            for (int i = 0; i < reader.FieldCount; ++i)
-                results[reader.GetName(i)] = reader.GetValue(i);
-        }
 
         public object this[string key]
         {
@@ -123,6 +127,16 @@ namespace FouridStudio
             {
                 return results[key];
             }
+        }
+
+        #endregion 屬性
+
+        #region 主要函式
+
+        public SQLiteResult(SqliteDataReader reader)
+        {
+            for (int i = 0; i < reader.FieldCount; ++i)
+                results[reader.GetName(i)] = reader.GetValue(i);
         }
 
         public IEnumerator GetEnumerator()
@@ -144,5 +158,7 @@ namespace FouridStudio
         {
             return results.ContainsKey(key);
         }
+
+        #endregion 主要函式
     }
 }

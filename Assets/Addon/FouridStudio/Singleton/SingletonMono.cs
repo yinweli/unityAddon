@@ -9,6 +9,8 @@ namespace FouridStudio
     /// <typeparam name="T"></typeparam>
     public class SingletonMono<T> : MonoBehaviour where T : Object, new()
     {
+        #region 屬性
+
         private static T instance = null;
 
         public static T Instance
@@ -21,6 +23,10 @@ namespace FouridStudio
                 return instance;
             }
         }
+
+        #endregion 屬性
+
+        #region Unity事件
 
         private void Awake()
         {
@@ -35,5 +41,7 @@ namespace FouridStudio
             if (instance == this)
                 instance = null;
         }
+
+        #endregion Unity事件
     }
 }
