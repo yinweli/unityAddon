@@ -69,6 +69,10 @@ namespace LitJson
         public bool IsString {
             get { return type == JsonType.String; }
         }
+
+        public ICollection<string> Keys {
+            get { EnsureDictionary (); return inst_object.Keys; }
+        }
         #endregion
 
 
@@ -432,11 +436,11 @@ namespace LitJson
 
         public static explicit operator Int64 (JsonData data)
         {
-            if (data.type != JsonType.Long)
+            if (data.type != JsonType.Long && data.type != JsonType.Int)
                 throw new InvalidCastException (
                     "Instance of JsonData doesn't hold an int");
 
-            return data.inst_long;
+            return (data.type == JsonType.Long) ? data.inst_long : data.inst_int;
         }
 
         public static explicit operator String (JsonData data)
@@ -737,6 +741,11 @@ namespace LitJson
 
         private static void WriteJson (IJsonWrapper obj, JsonWriter writer)
         {
+            if (obj == null) {
+                writer.Write (null);
+                return;
+            }
+
             if (obj.IsString) {
                 writer.Write (obj.GetString ());
                 return;
