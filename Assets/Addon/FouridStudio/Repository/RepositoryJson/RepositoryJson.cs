@@ -1,5 +1,4 @@
-﻿using LitJson;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,23 +6,29 @@ using System.Linq;
 namespace FouridStudio
 {
     /// <summary>
-    /// json列表資料庫
+    /// json資料庫的資料基底介面
+    /// </summary>
+    public interface RepositoryJsonBase
+    {
+        /// <summary>
+        /// 取得索引
+        /// </summary>
+        /// <returns>索引</returns>
+        object getKey();
+    }
+
+    /// <summary>
+    /// json資料庫
     /// </summary>
     /// <typeparam name="T">資料型態</typeparam>
-    public class JsonDepot<T> : IEnumerable where T : class
+    public class RepositoryJson<T> : IEnumerable where T : class, RepositoryJsonBase
     {
-        #region 定義
+        #region 屬性
 
         /// <summary>
-        /// 索引解析委派
+        /// json配接器
         /// </summary>
-        /// <param name="obj">資料物件</param>
-        /// <returns>索引物件</returns>
-        public delegate object ParseKey(T obj);
-
-        #endregion 定義
-
-        #region 屬性
+        private JsonAdaper<T> jsonAdaper = null;
 
         /// <summary>
         /// 資料列表
@@ -34,6 +39,11 @@ namespace FouridStudio
 
         #region 主要函式
 
+        public RepositoryJson(JsonAdaper<T> jsonAdaper)
+        {
+            this.jsonAdaper = jsonAdaper;
+        }
+
         public IEnumerator GetEnumerator()
         {
             return datas.GetEnumerator();
@@ -43,23 +53,22 @@ namespace FouridStudio
         /// 開啟資料庫
         /// </summary>
         /// <param name="jsons">文字檔案內容列表</param>
-        /// <param name="parseKey">索引解析委派</param>
         /// <returns>資料庫物件</returns>
-        public JsonDepot<T> open(IEnumerable<string> jsons, ParseKey parseKey)
+        public RepositoryJson<T> open(IEnumerable<string> jsons)
         {
             close();
 
-            if (parseKey == null)
-                throw new Exception("parse key null");
+            if (jsonAdaper == null)
+                throw new Exception("json adaper null");
 
             foreach (string itor in jsons)
             {
-                T data = JsonMapper.ToObject<T>(itor);
+                T data = jsonAdaper.toObject(itor) as T;
 
                 if (data == null)
                     throw new Exception("parse data failed");
 
-                object key = parseKey(data);
+                object key = data.getKey();
 
                 if (key == null)
                     throw new Exception("parse key failed");

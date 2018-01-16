@@ -9,14 +9,14 @@ namespace FouridStudio
     /// SQLite資料庫
     /// 注意!不支援多執行緒
     /// </summary>
-    public class SQLite : IDisposable
+    public class RepositorySQLite : IDisposable
     {
         #region 屬性
 
         /// <summary>
         /// 資料庫物件
         /// </summary>
-        private SqliteConnection connect = null;
+        private SqliteConnection connection = null;
 
         #endregion 屬性
 
@@ -33,12 +33,12 @@ namespace FouridStudio
         /// </summary>
         /// <param name="dataSource">資料來源字串</param>
         /// <returns>資料庫物件</returns>
-        public SQLite open(string dataSource)
+        public RepositorySQLite open(string dataSource)
         {
             close();
 
-            connect = new SqliteConnection(dataSource);
-            connect.Open();
+            connection = new SqliteConnection(dataSource);
+            connection.Open();
 
             return this;
         }
@@ -49,16 +49,16 @@ namespace FouridStudio
         /// </summary>
         /// <param name="sqls">文字檔案內容列表</param>
         /// <returns>資料庫物件</returns>
-        public SQLite open(IEnumerable<string> sqls)
+        public RepositorySQLite open(IEnumerable<string> sqls)
         {
             close();
 
-            connect = new SqliteConnection("Data Source=:memory:;Version=3;");
-            connect.Open();
+            connection = new SqliteConnection("Data Source=:memory:;Version=3;");
+            connection.Open();
 
             foreach (string itor in sqls)
             {
-                using (SqliteCommand command = connect.CreateCommand())
+                using (SqliteCommand command = connection.CreateCommand())
                 {
                     command.CommandText = itor;
                     command.ExecuteNonQuery();
@@ -73,10 +73,10 @@ namespace FouridStudio
         /// </summary>
         public void close()
         {
-            if (connect != null)
+            if (connection != null)
             {
-                connect.Close();
-                connect = null;
+                connection.Close();
+                connection = null;
             }//if
         }
 
@@ -87,10 +87,10 @@ namespace FouridStudio
         /// <returns>結果列表</returns>
         public List<SQLiteResult> query(string sql)
         {
-            if (connect == null)
+            if (connection == null)
                 throw new Exception("sqlite not open");
 
-            using (SqliteCommand command = connect.CreateCommand())
+            using (SqliteCommand command = connection.CreateCommand())
             {
                 command.CommandText = sql;
 
