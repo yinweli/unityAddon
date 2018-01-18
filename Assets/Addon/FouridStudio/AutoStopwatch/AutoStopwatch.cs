@@ -33,7 +33,7 @@ namespace FouridStudio
         public void Dispose()
         {
             stopWatch.Stop();
-            UnityEngine.Debug.Log(string.Format("{0} finish, used time={1}ms", title, stopWatch.ElapsedMilliseconds));
+            Report.Instance.info(title + " finish, used time=" + stopWatch.ElapsedMilliseconds + "ms");
         }
 
         #endregion 主要函式
