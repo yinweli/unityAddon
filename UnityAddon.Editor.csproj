@@ -292,18 +292,6 @@
     <Reference Include="NPOI.OpenXmlFormats">
       <HintPath>Assets/Addon/FouridStudio/NPOIExcel/NPOI.2.3.0/Plugins/net20/NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
-    <Reference Include="Mono.Data.Sqlite">
-      <HintPath>Assets/Addon/FouridStudio/Repository/RepositorySQLite/Plugins/Mono.Data.Sqlite.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Data.SqliteClient">
-      <HintPath>Assets/Addon/FouridStudio/Repository/RepositorySQLite/Plugins/Mono.Data.SqliteClient.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data">
-      <HintPath>Assets/Addon/FouridStudio/Repository/RepositorySQLite/Plugins/System.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data.Linq">
-      <HintPath>Assets/Addon/FouridStudio/Repository/RepositorySQLite/Plugins/System.Data.Linq.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.Advertisements">
       <HintPath>C:/Users/yinweli/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.3/UnityEngine.Advertisements.dll</HintPath>
     </Reference>
@@ -324,6 +312,18 @@
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>C:/Users/yinweli/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Data.Sqlite">
+      <HintPath>Assets/Addon/FouridStudio/RepositorySQLite/Plugins/Mono.Data.Sqlite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <HintPath>Assets/Addon/FouridStudio/RepositorySQLite/Plugins/System.Data.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Data.SqliteClient">
+      <HintPath>Assets/Addon/FouridStudio/RepositorySQLite/Plugins/Mono.Data.SqliteClient.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data">
+      <HintPath>Assets/Addon/FouridStudio/RepositorySQLite/Plugins/System.Data.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>D:/Unity/Unity 2017.3.0f3/Editor/Data/PlaybackEngines/iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
