@@ -7,7 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{0AD4F477-F34E-BDA0-ECB7-7E8053A91295}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AssemblyName>Assembly-CSharp.dll</AssemblyName>
+    <AssemblyName>Assembly-CSharp</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
@@ -292,6 +292,18 @@
     <Reference Include="NPOI.OpenXmlFormats">
       <HintPath>Assets/Addon/FouridStudio/NPOIExcel/NPOI.2.3.0/Plugins/net20/NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.Data.Sqlite">
+      <HintPath>Assets/Addon/FouridStudio/Repository/RepositorySQLite/Plugins/Mono.Data.Sqlite.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Data.SqliteClient">
+      <HintPath>Assets/Addon/FouridStudio/Repository/RepositorySQLite/Plugins/Mono.Data.SqliteClient.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data">
+      <HintPath>Assets/Addon/FouridStudio/Repository/RepositorySQLite/Plugins/System.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <HintPath>Assets/Addon/FouridStudio/Repository/RepositorySQLite/Plugins/System.Data.Linq.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.Advertisements">
       <HintPath>C:/Users/yinweli/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.3/UnityEngine.Advertisements.dll</HintPath>
     </Reference>
@@ -313,18 +325,6 @@
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>C:/Users/yinweli/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
     </Reference>
-    <Reference Include="Mono.Data.Sqlite">
-      <HintPath>Assets/Addon/FouridStudio/Repository/RepositorySQLite/Plugins/Mono.Data.Sqlite.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data.Linq">
-      <HintPath>Assets/Addon/FouridStudio/Repository/RepositorySQLite/Plugins/System.Data.Linq.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Data.SqliteClient">
-      <HintPath>Assets/Addon/FouridStudio/Repository/RepositorySQLite/Plugins/Mono.Data.SqliteClient.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data">
-      <HintPath>Assets/Addon/FouridStudio/Repository/RepositorySQLite/Plugins/System.Data.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>D:/Unity/Unity 2017.3.0f3/Editor/Data/PlaybackEngines/iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
     </Reference>
@@ -337,15 +337,14 @@
     <Compile Include="Assets\Addon\FouridStudio\Attribute\ReadOnly\ReadOnlyAttribute.cs" />
     <Compile Include="Assets\Addon\FouridStudio\AutoStopwatch\AutoStopwatch.cs" />
     <Compile Include="Assets\Addon\FouridStudio\Courier\Courier.cs" />
-    <Compile Include="Assets\Addon\FouridStudio\Debug\Debug.cs" />
     <Compile Include="Assets\Addon\FouridStudio\Dice\Dice.cs" />
+    <Compile Include="Assets\Addon\FouridStudio\GamePath\GamePath.cs" />
     <Compile Include="Assets\Addon\FouridStudio\NPOIExcel\NPOIExcel.cs" />
     <Compile Include="Assets\Addon\FouridStudio\ObjectPool\ObjectPool.cs" />
     <Compile Include="Assets\Addon\FouridStudio\Polygon\Polygon.cs" />
     <Compile Include="Assets\Addon\FouridStudio\Report\Report.cs" />
     <Compile Include="Assets\Addon\FouridStudio\Repository\RepositoryJson\RepositoryJson.cs" />
     <Compile Include="Assets\Addon\FouridStudio\Repository\RepositorySQLite\RepositorySQLite.cs" />
-    <Compile Include="Assets\Addon\FouridStudio\Route\Route.cs" />
     <Compile Include="Assets\Addon\FouridStudio\Singleton\Singleton.cs" />
     <Compile Include="Assets\Addon\FouridStudio\Singleton\SingletonMono.cs" />
     <Compile Include="Assets\Addon\FouridStudio\UGUIEventListener\UGUIEventListener.cs" />
