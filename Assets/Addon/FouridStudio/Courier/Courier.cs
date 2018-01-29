@@ -7,7 +7,7 @@ namespace FouridStudio
     /// 訊息接收發佈
     /// 用來處理不同系統間的訊息傳遞
     /// </summary>
-    public class Courier : Singleton<Courier>
+    public class Courier<T> : Singleton<Courier<T>>
     {
         #region 定義
 
@@ -25,16 +25,16 @@ namespace FouridStudio
         /// <summary>
         /// 訊息事件列表
         /// </summary>
-        private Dictionary<string, Event> couriers = new Dictionary<string, Event>();
+        private Dictionary<T, Event> couriers = new Dictionary<T, Event>();
 
-        public Event this[string subject]
+        public Event this[T value]
         {
             get
             {
-                if (couriers.ContainsKey(subject) == false)
-                    couriers[subject] = new Event();
+                if (couriers.ContainsKey(value) == false)
+                    couriers[value] = new Event();
 
-                return couriers[subject];
+                return couriers[value];
             }
         }
 
