@@ -14,18 +14,13 @@ namespace FouridStudio
         /// <summary>
         /// 訊息接收者類別
         /// </summary>
-        public class Receiver : UnityEvent<System.Object>
+        private class Receiver : UnityEvent<System.Object>
         {
         }
 
         #endregion 定義
 
         #region 屬性
-
-        /// <summary>
-        /// 執行未註冊訊息通知委派
-        /// </summary>
-        public UnityAction<T> onInvokEmpty = null;
 
         /// <summary>
         /// 訊息接收者列表
@@ -37,7 +32,7 @@ namespace FouridStudio
         #region 主要函式
 
         /// <summary>
-        /// 新增訊息接收委派
+        /// 新增訊息委派
         /// </summary>
         /// <param name="subject">標題</param>
         /// <param name="call">訊息接收委派</param>
@@ -47,7 +42,7 @@ namespace FouridStudio
         }
 
         /// <summary>
-        /// 移除訊息接收委派
+        /// 移除訊息委派
         /// </summary>
         /// <param name="subject">標題</param>
         /// <param name="call">訊息接收委派</param>
@@ -57,7 +52,7 @@ namespace FouridStudio
         }
 
         /// <summary>
-        /// 執行訊息
+        /// 執行訊息委派
         /// </summary>
         /// <param name="subject">標題</param>
         public void invok(T subject)
@@ -66,21 +61,13 @@ namespace FouridStudio
         }
 
         /// <summary>
-        /// 執行訊息
+        /// 執行訊息委派
         /// </summary>
         /// <param name="subject">標題</param>
         /// <param name="argument">參數</param>
         public void invok(T subject, System.Object argument)
         {
-            Receiver receiver = getReceiver(subject);
-
-            if (receiver.GetPersistentEventCount() > 0)
-                receiver.Invoke(argument);
-            else
-            {
-                if (onInvokEmpty != null)
-                    onInvokEmpty(subject);
-            }//if
+            getReceiver(subject).Invoke(argument);
         }
 
         #endregion 主要函式
