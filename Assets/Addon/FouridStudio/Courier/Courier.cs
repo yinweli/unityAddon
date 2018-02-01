@@ -7,7 +7,7 @@ namespace FouridStudio
     /// 訊息接收發佈
     /// 用來處理不同系統間的訊息傳遞
     /// </summary>
-    public class Courier<T>
+    public class Courier : Singleton<Courier>
     {
         #region 定義
 
@@ -25,7 +25,7 @@ namespace FouridStudio
         /// <summary>
         /// 訊息接收者列表
         /// </summary>
-        private Dictionary<T, Receiver> receivers = new Dictionary<T, Receiver>();
+        private Dictionary<int, Receiver> receivers = new Dictionary<int, Receiver>();
 
         #endregion 屬性
 
@@ -34,40 +34,40 @@ namespace FouridStudio
         /// <summary>
         /// 新增訊息委派
         /// </summary>
-        /// <param name="subject">標題</param>
+        /// <param name="index">索引值</param>
         /// <param name="call">訊息接收委派</param>
-        public void add(T subject, UnityAction<System.Object> call)
+        public void add(int index, UnityAction<System.Object> call)
         {
-            getReceiver(subject).AddListener(call);
+            getReceiver(index).AddListener(call);
         }
 
         /// <summary>
         /// 移除訊息委派
         /// </summary>
-        /// <param name="subject">標題</param>
+        /// <param name="index">索引值</param>
         /// <param name="call">訊息接收委派</param>
-        public void remove(T subject, UnityAction<System.Object> call)
+        public void remove(int index, UnityAction<System.Object> call)
         {
-            getReceiver(subject).RemoveListener(call);
+            getReceiver(index).RemoveListener(call);
         }
 
         /// <summary>
         /// 執行訊息委派
         /// </summary>
-        /// <param name="subject">標題</param>
-        public void invok(T subject)
+        /// <param name="index">索引值</param>
+        public void invok(int index)
         {
-            invok(subject, null);
+            invok(index, null);
         }
 
         /// <summary>
         /// 執行訊息委派
         /// </summary>
-        /// <param name="subject">標題</param>
+        /// <param name="index">索引值</param>
         /// <param name="argument">參數</param>
-        public void invok(T subject, System.Object argument)
+        public void invok(int index, System.Object argument)
         {
-            getReceiver(subject).Invoke(argument);
+            getReceiver(index).Invoke(argument);
         }
 
         #endregion 主要函式
@@ -77,14 +77,14 @@ namespace FouridStudio
         /// <summary>
         /// 取得訊息接收者
         /// </summary>
-        /// <param name="subject">標題</param>
+        /// <param name="index">索引值</param>
         /// <returns>訊息接收者</returns>
-        private Receiver getReceiver(T subject)
+        private Receiver getReceiver(int index)
         {
-            if (receivers.ContainsKey(subject) == false)
-                receivers[subject] = new Receiver();
+            if (receivers.ContainsKey(index) == false)
+                receivers[index] = new Receiver();
 
-            return receivers[subject];
+            return receivers[index];
         }
 
         #endregion 內部函式
