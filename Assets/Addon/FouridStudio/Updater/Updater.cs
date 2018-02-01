@@ -169,6 +169,8 @@ namespace FouridStudio
 
             updates.Values.ToList().ForEach(itor => itor.update());
             milliseconds = stopwatch.ElapsedMilliseconds;
+
+            stopwatch.Stop();
         }
 
         #endregion Unity事件
