@@ -14,7 +14,7 @@ namespace FouridStudio
         /// <summary>
         /// 訊息接收者類別
         /// </summary>
-        private class Receiver : UnityEvent<System.Object>
+        private class Receiver : UnityEvent
         {
         }
 
@@ -41,7 +41,7 @@ namespace FouridStudio
         /// </summary>
         /// <param name="index">索引值</param>
         /// <param name="call">訊息接收委派</param>
-        public void add(int index, UnityAction<System.Object> call)
+        public void add(int index, UnityAction call)
         {
             getReceiver(index).AddListener(call);
         }
@@ -51,7 +51,7 @@ namespace FouridStudio
         /// </summary>
         /// <param name="index">索引值</param>
         /// <param name="call">訊息接收委派</param>
-        public void remove(int index, UnityAction<System.Object> call)
+        public void remove(int index, UnityAction call)
         {
             getReceiver(index).RemoveListener(call);
         }
@@ -62,20 +62,10 @@ namespace FouridStudio
         /// <param name="index">索引值</param>
         public void invok(int index)
         {
-            invok(index, null);
+            getReceiver(index).Invoke();
 
             if (onInvok != null)
                 onInvok(index);
-        }
-
-        /// <summary>
-        /// 執行訊息委派
-        /// </summary>
-        /// <param name="index">索引值</param>
-        /// <param name="argument">參數</param>
-        public void invok(int index, System.Object argument)
-        {
-            getReceiver(index).Invoke(argument);
         }
 
         #endregion 主要函式
