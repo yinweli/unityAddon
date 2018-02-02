@@ -23,6 +23,11 @@ namespace FouridStudio
         #region 屬性
 
         /// <summary>
+        /// 執行訊息委派通知
+        /// </summary>
+        public UnityAction<int> onInvok = null;
+
+        /// <summary>
         /// 訊息接收者列表
         /// </summary>
         private Dictionary<int, Receiver> receivers = new Dictionary<int, Receiver>();
@@ -58,6 +63,9 @@ namespace FouridStudio
         public void invok(int index)
         {
             invok(index, null);
+
+            if (onInvok != null)
+                onInvok(index);
         }
 
         /// <summary>
