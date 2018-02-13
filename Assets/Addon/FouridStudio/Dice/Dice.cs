@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace FouridStudio
@@ -14,7 +13,7 @@ namespace FouridStudio
         /// <summary>
         /// 隨機物件
         /// </summary>
-        private Random random = null;
+        private RandomInterface random = null;
 
         /// <summary>
         /// 骰子內容列表
@@ -56,10 +55,10 @@ namespace FouridStudio
 
         public Dice()
         {
-            random = new Random();
+            this.random = new Random();
         }
 
-        public Dice(Random random)
+        public Dice(RandomInterface random)
         {
             this.random = random;
         }
@@ -80,7 +79,7 @@ namespace FouridStudio
         /// <returns>資料物件</returns>
         public T roll()
         {
-            return roll(random.Next(0, max));
+            return roll(random.randomValue(0, max));
         }
 
         /// <summary>
