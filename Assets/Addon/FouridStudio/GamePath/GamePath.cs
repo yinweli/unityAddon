@@ -15,22 +15,22 @@ namespace FouridStudio
         /// <summary>
         /// 設置資料夾
         /// </summary>
-        private const string CONFIG = "config";
+        private const string Config = "config";
 
         /// <summary>
         /// mod資料夾
         /// </summary>
-        private const string MOD = "mod";
+        private const string Mod = "mod";
 
         /// <summary>
         /// 存檔資料夾
         /// </summary>
-        private const string SAVE = "save";
+        private const string Save = "save";
 
         /// <summary>
         /// 紀錄資料夾
         /// </summary>
-        private const string LOG = "log";
+        private const string Log = "log";
 
         #endregion 定義
 
@@ -68,7 +68,7 @@ namespace FouridStudio
         /// <summary>
         /// 取得StreamAssets路徑
         /// </summary>
-        public static string PathStreamAssets
+        public string PathStreamAssets
         {
             get
             {
@@ -106,7 +106,7 @@ namespace FouridStudio
             get
             {
                 if (pathConfig.Length <= 0)
-                    pathConfig = pathCombine(PathMyDocuments, Application.companyName, Application.productName, CONFIG);
+                    pathConfig = pathCombine(PathMyDocuments, Application.companyName, Application.productName, Config);
 
                 return pathConfig;
             }
@@ -120,7 +120,7 @@ namespace FouridStudio
             get
             {
                 if (pathMod.Length <= 0)
-                    pathMod = pathCombine(PathMyDocuments, Application.companyName, Application.productName, MOD);
+                    pathMod = pathCombine(PathMyDocuments, Application.companyName, Application.productName, Mod);
 
                 return pathMod;
             }
@@ -134,7 +134,7 @@ namespace FouridStudio
             get
             {
                 if (pathSave.Length <= 0)
-                    pathSave = pathCombine(PathMyDocuments, Application.companyName, Application.productName, SAVE);
+                    pathSave = pathCombine(PathMyDocuments, Application.companyName, Application.productName, Save);
 
                 return pathSave;
             }
@@ -148,7 +148,7 @@ namespace FouridStudio
             get
             {
                 if (pathLog.Length <= 0)
-                    pathLog = pathCombine(PathMyDocuments, Application.companyName, Application.productName, LOG);
+                    pathLog = pathCombine(PathMyDocuments, Application.companyName, Application.productName, Log);
 
                 return pathLog;
             }
