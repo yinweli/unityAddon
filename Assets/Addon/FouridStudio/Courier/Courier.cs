@@ -62,10 +62,10 @@ namespace FouridStudio
         /// <param name="index">索引值</param>
         public void invok(int index)
         {
-            getReceiver(index).Invoke();
-
             if (onInvok != null)
                 onInvok(index);
+
+            getReceiver(index).Invoke();
         }
 
         #endregion 主要函式
