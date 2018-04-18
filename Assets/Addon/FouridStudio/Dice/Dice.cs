@@ -25,38 +25,9 @@ namespace FouridStudio
         /// </summary>
         private int max = 0;
 
-        public int Max
-        {
-            get
-            {
-                return max;
-            }
-        }
-
-        public int Count
-        {
-            get
-            {
-                return dices.Count;
-            }
-        }
-
-        public bool IsEmpty
-        {
-            get
-            {
-                return dices.Count <= 0;
-            }
-        }
-
         #endregion 屬性
 
         #region 主要函式
-
-        public Dice()
-        {
-            this.random = new Random();
-        }
 
         public Dice(RandomInterface random)
         {

@@ -1,9 +1,9 @@
 ﻿namespace FouridStudio
 {
     /// <summary>
-    /// 預設隨機類別
+    /// 系統隨機類別
     /// </summary>
-    public class Random : RandomInterface
+    public class SystemRandom : RandomInterface
     {
         #region 屬性
 
@@ -15,24 +15,23 @@
         /// <summary>
         /// 隨機種子
         /// </summary>
-        private string seed = "default seed";
+        private int seed = 0;
 
         #endregion 屬性
 
         #region 主要函式
 
-        public Random()
+        public SystemRandom()
         {
             this.random = new System.Random();
         }
 
-        public Random(int seed)
+        public SystemRandom(int seed)
         {
-            this.random = new System.Random(seed);
-            this.seed = seed.ToString();
+            this.random = new System.Random(this.seed = seed);
         }
 
-        public string getSeed()
+        public int getSeed()
         {
             return seed;
         }

@@ -2,9 +2,9 @@
 using LitJson;
 
 /// <summary>
-/// LitJson配接器
+/// LitJson
 /// </summary>
-public class LitJsonAdaper<T> : JsonAdaper<T>
+public class LitJson<T> : JsonInterface<T>
 {
     public string toJson(T obj)
     {

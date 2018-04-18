@@ -1,10 +1,10 @@
 ﻿namespace FouridStudio
 {
     /// <summary>
-    /// json配接器
+    /// json介面
     /// </summary>
     /// <typeparam name="T">資料型態</typeparam>
-    public interface JsonAdaper<T>
+    public interface JsonInterface<T>
     {
         /// <summary>
         /// 從物件轉為json字串

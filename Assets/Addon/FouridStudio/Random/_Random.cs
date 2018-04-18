@@ -1,11 +1,11 @@
 ﻿namespace FouridStudio
 {
     /// <summary>
-    /// 隨機取值介面
+    /// 隨機介面
     /// </summary>
     public interface RandomInterface
     {
-        string getSeed();
+        int getSeed();
 
         int randomValue();
 

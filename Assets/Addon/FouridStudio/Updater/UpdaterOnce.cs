@@ -17,87 +17,6 @@ namespace FouridStudio
         #region 定義
 
         /// <summary>
-        /// 索引編製
-        /// </summary>
-        private class Indexer
-        {
-            /// <summary>
-            /// 索引值
-            /// </summary>
-            private static int index = 0;
-
-            public static int Index
-            {
-                get
-                {
-                    return ++index;
-                }
-            }
-        }
-
-        /// <summary>
-        /// 更新元素
-        /// </summary>
-        private class Element
-        {
-            /// <summary>
-            /// 索引值
-            /// </summary>
-            private int index = Indexer.Index;
-
-            /// <summary>
-            /// 檢查委派
-            /// </summary>
-            private Check check = null;
-
-            /// <summary>
-            /// 執行委派
-            /// </summary>
-            private Execute execute = null;
-
-            /// <summary>
-            /// 暫停旗標
-            /// </summary>
-            private bool pause = false;
-
-            public bool Pause
-            {
-                get
-                {
-                    return pause;
-                }
-                set
-                {
-                    pause = value;
-                }
-            }
-
-            public Element(Check check, Execute execute)
-            {
-                this.check = check;
-                this.execute = execute;
-            }
-
-            public int Index
-            {
-                get
-                {
-                    return index;
-                }
-            }
-
-            public bool update()
-            {
-                bool result = pause == false && check();
-
-                if (result)
-                    execute();
-
-                return result;
-            }
-        }
-
-        /// <summary>
         /// 檢查委派
         /// </summary>
         /// <returns></returns>
@@ -144,14 +63,6 @@ namespace FouridStudio
         /// </summary>
         private Dictionary<int, Element> updates = new Dictionary<int, Element>();
 
-        public bool Pause
-        {
-            set
-            {
-                pause = value;
-            }
-        }
-
         #endregion 屬性
 
         #region Unity事件
@@ -190,10 +101,10 @@ namespace FouridStudio
         {
             Element element = new Element(check, execute);
 
-            updates.Add(element.Index, element);
+            updates.Add(element.getIndex(), element);
             countOfUpdate = updates.Count;
 
-            return element.Index;
+            return element.getIndex();
         }
 
         /// <summary>
@@ -215,7 +126,7 @@ namespace FouridStudio
         {
             Element element = updates.ContainsKey(index) ? updates[index] : null;
 
-            return element != null ? element.Pause : false;
+            return element != null ? element.getPause() : false;
         }
 
         /// <summary>
@@ -228,9 +139,107 @@ namespace FouridStudio
             Element element = updates.ContainsKey(index) ? updates[index] : null;
 
             if (element != null)
-                element.Pause = pause;
+                element.setPause(pause);
+        }
+
+        /// <summary>
+        /// 取得全域暫停旗標
+        /// </summary>
+        /// <returns>暫停旗標</returns>
+        public bool getAllPause()
+        {
+            return pause;
+        }
+
+        /// <summary>
+        /// 設定全域啟動/暫停定時更新
+        /// </summary>
+        /// <param name="pause">暫停旗標</param>
+        public void setAllPause(bool pause)
+        {
+            this.pause = pause;
         }
 
         #endregion 主要函式
+
+        #region 子類別
+
+        /// <summary>
+        /// 索引編製
+        /// </summary>
+        private class Indexer
+        {
+            /// <summary>
+            /// 索引值
+            /// </summary>
+            private static int index = 0;
+
+            public static int Index
+            {
+                get
+                {
+                    return ++index;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 更新元素
+        /// </summary>
+        private class Element
+        {
+            /// <summary>
+            /// 索引值
+            /// </summary>
+            private int index = Indexer.Index;
+
+            /// <summary>
+            /// 檢查委派
+            /// </summary>
+            private Check check = null;
+
+            /// <summary>
+            /// 執行委派
+            /// </summary>
+            private Execute execute = null;
+
+            /// <summary>
+            /// 暫停旗標
+            /// </summary>
+            private bool pause = false;
+
+            public Element(Check check, Execute execute)
+            {
+                this.check = check;
+                this.execute = execute;
+            }
+
+            public bool update()
+            {
+                bool result = pause == false && check();
+
+                if (result)
+                    execute();
+
+                return result;
+            }
+
+            public int getIndex()
+            {
+                return index;
+            }
+
+            public bool getPause()
+            {
+                return pause;
+            }
+
+            public void setPause(bool pause)
+            {
+                this.pause = pause;
+            }
+        }
+
+        #endregion 子類別
     }
 }

@@ -28,7 +28,7 @@ namespace FouridStudio
         /// <summary>
         /// json配接器
         /// </summary>
-        private JsonAdaper<T> jsonAdaper = null;
+        private JsonInterface<T> jsonAdaper = null;
 
         /// <summary>
         /// 資料列表
@@ -39,9 +39,15 @@ namespace FouridStudio
 
         #region 主要函式
 
-        public RepositoryJson(JsonAdaper<T> jsonAdaper)
+        public RepositoryJson(JsonInterface<T> jsonAdaper)
         {
             this.jsonAdaper = jsonAdaper;
+        }
+
+        public RepositoryJson(JsonInterface<T> jsonAdaper, IEnumerable<string> jsons)
+        {
+            this.jsonAdaper = jsonAdaper;
+            open(jsons);
         }
 
         public IEnumerator GetEnumerator()
@@ -52,7 +58,7 @@ namespace FouridStudio
         /// <summary>
         /// 開啟資料庫
         /// </summary>
-        /// <param name="jsons">文字檔案內容列表</param>
+        /// <param name="jsons">json字串列表</param>
         /// <returns>資料庫物件</returns>
         public RepositoryJson<T> open(IEnumerable<string> jsons)
         {
@@ -98,10 +104,19 @@ namespace FouridStudio
         }
 
         /// <summary>
+        /// 取得全部索引
+        /// </summary>
+        /// <returns>索引物件列表</returns>
+        public IEnumerable<object> getKeys()
+        {
+            return datas.Keys.ToList();
+        }
+
+        /// <summary>
         /// 取得全部資料
         /// </summary>
         /// <returns>資料物件列表</returns>
-        public IEnumerable<T> getAll()
+        public IEnumerable<T> getValues()
         {
             return datas.Values.ToList();
         }

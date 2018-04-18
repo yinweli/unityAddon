@@ -8,29 +8,29 @@ namespace FouridStudio
     /// <summary>
     /// 遊戲路徑
     /// </summary>
-    public class GamePath : Singleton<GamePath>
+    public class GamePath
     {
         #region 定義
 
         /// <summary>
         /// 設置資料夾
         /// </summary>
-        private const string Config = "config";
+        private const string PathConfig = "config";
 
         /// <summary>
         /// mod資料夾
         /// </summary>
-        private const string Mod = "mod";
+        private const string PathMod = "mod";
 
         /// <summary>
         /// 存檔資料夾
         /// </summary>
-        private const string Save = "save";
+        private const string PathSave = "save";
 
         /// <summary>
         /// 紀錄資料夾
         /// </summary>
-        private const string Log = "log";
+        private const string PathLog = "log";
 
         #endregion 定義
 
@@ -39,131 +39,116 @@ namespace FouridStudio
         /// <summary>
         /// 我的文件夾路徑
         /// </summary>
-        private string pathMyDocuments = "";
+        private static string myDocuments = "";
 
         /// <summary>
         /// 設置文件夾路徑
         /// </summary>
-        private string pathConfig = "";
+        private static string config = "";
 
         /// <summary>
         /// mod文件夾路徑
         /// </summary>
-        private string pathMod = "";
+        private static string mod = "";
 
         /// <summary>
         /// 存檔文件夾路徑
         /// </summary>
-        private string pathSave = "";
+        private static string save = "";
 
         /// <summary>
         /// 紀錄文件夾路徑
         /// </summary>
-        private string pathLog = "";
+        private static string log = "";
 
         #endregion 屬性
 
         #region 主要函式
 
         /// <summary>
-        /// 取得StreamAssets路徑
-        /// </summary>
-        public string PathStreamAssets
-        {
-            get
-            {
-#if UNITY_EDITOR
-                return Application.streamingAssetsPath;
-#elif UNITY_ANDROID
-                return Application.persistentDataPath;
-#elif UNITY_IOS
-                return Application.persistentDataPath;
-#else
-                return Application.streamingAssetsPath;
-#endif
-            }
-        }
-
-        /// <summary>
         /// 取得我的文件夾路徑
         /// </summary>
-        public string PathMyDocuments
+        public static string MyDocuments
         {
             get
             {
-                if (pathMyDocuments.Length <= 0)
-                    pathMyDocuments = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                if (myDocuments.Length <= 0)
+                    myDocuments = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
-                return pathMyDocuments;
+                return myDocuments;
             }
         }
 
         /// <summary>
         /// 取得設置文件夾路徑
         /// </summary>
-        public string PathConfig
+        public static string Config
         {
             get
             {
-                if (pathConfig.Length <= 0)
-                    pathConfig = pathCombine(PathMyDocuments, Application.companyName, Application.productName, Config);
+                if (config.Length <= 0)
+                    config = pathsCombine(MyDocuments, Application.companyName, Application.productName, PathConfig);
 
-                return pathConfig;
+                return config;
             }
         }
 
         /// <summary>
         /// 取得mod文件夾路徑
         /// </summary>
-        public string PathMod
+        public static string Mod
         {
             get
             {
-                if (pathMod.Length <= 0)
-                    pathMod = pathCombine(PathMyDocuments, Application.companyName, Application.productName, Mod);
+                if (mod.Length <= 0)
+                    mod = pathsCombine(MyDocuments, Application.companyName, Application.productName, PathMod);
 
-                return pathMod;
+                return mod;
             }
         }
 
         /// <summary>
         /// 取得存檔文件夾路徑
         /// </summary>
-        public string PathSave
+        public static string Save
         {
             get
             {
-                if (pathSave.Length <= 0)
-                    pathSave = pathCombine(PathMyDocuments, Application.companyName, Application.productName, Save);
+                if (save.Length <= 0)
+                    save = pathsCombine(MyDocuments, Application.companyName, Application.productName, PathSave);
 
-                return pathSave;
+                return save;
             }
         }
 
         /// <summary>
         /// 取得紀錄文件夾路徑
         /// </summary>
-        public string PathLog
+        public static string Log
         {
             get
             {
-                if (pathLog.Length <= 0)
-                    pathLog = pathCombine(PathMyDocuments, Application.companyName, Application.productName, Log);
+                if (log.Length <= 0)
+                    log = pathsCombine(MyDocuments, Application.companyName, Application.productName, PathLog);
 
-                return pathLog;
+                return log;
             }
         }
+
+        #endregion 主要函式
+
+        #region 內部函式
 
         /// <summary>
         /// 合併路徑列表為路徑字串
         /// </summary>
         /// <param name="paths">路徑列表</param>
         /// <returns>路徑字串</returns>
-        public string pathCombine(params string[] paths)
+        private static string pathsCombine(params string[] paths)
         {
             return paths.Aggregate((current, next) => Path.Combine(current, next));
         }
 
-        #endregion 主要函式
+        #endregion 內部函式
     }
 }

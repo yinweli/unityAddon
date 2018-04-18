@@ -33,7 +33,7 @@ namespace FouridStudio
         public void Dispose()
         {
             stopWatch.Stop();
-            Report.Instance.info(title + " finish, used time=" + stopWatch.ElapsedMilliseconds + "ms");
+            Report.info(title + " finish, used time=" + stopWatch.ElapsedMilliseconds + "ms");
         }
 
         #endregion 主要函式
